@@ -1,23 +1,59 @@
 package com.keyin.city;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import com.keyin.airport.Airport;
+
+import javax.persistence.*;
+
 @Entity
-public class City {
+@Entity
+public class Cities {
     @Id
-    @SequenceGenerator(name = "city_sequence", sequenceName = "city_sequence", allocationSize = 1, initialValue =1)
-    @GeneratedValue(generator = "city_sequence")
-    private long id;
+    @SequenceGenerator(name = "cities_sequence", sequenceName = "cities_sequence", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(generator = "cities_sequence")
 
+    private Long id;
     private String name;
+    private String state;
+    private String population;
 
-    public long getId() {return id;}
+    @OneToMany
+    private List<airport> airport;
 
-    public void setId(long id){this.id = id;}
+    @OneToMany
+    private List<Airport> airport;
 
-    public String getname() {return name; }
+    @OneToMany
+    private List<Passengers> passengers;
 
-    public void setName(String name) {this.name =name;}
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
 }
